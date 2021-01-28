@@ -1,0 +1,11 @@
+---
+db2_packages:
+ - pam
+ - pam-devel.s390x
+ - libaio
+ - libstdc++-devel.s390x
+ - libstdc++
+ - ksh
+ - unzip
+ - numactl
+ - libselinux-python

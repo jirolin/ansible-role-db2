@@ -1,7 +1,7 @@
 ---
 # Include variables at the start so they're in scope
 - name: Include OS-Specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+  include_vars: "{{ ansible_os_family }}_{{ ansible_distribution_major_version }}_{{ ansible_architecture }}.yml"
 
 - include: get_db2.yml
   tags: download
@@ -39,7 +39,8 @@
   tags: parse
 
 - name: Installing DB2 10.5
-  command: "{{ db2_binary.dest }}/{{ db2_creates }}/db2setup -r /tmp/db2server.rsp"
+  command: >-
+    "{{ db2_binary.dest }}/{{ db2_creates }}/db2setup -r /tmp/db2server.rsp"
   register: db2_setup
   args:
     creates: "{{ resp.file }}"
