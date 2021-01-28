@@ -37,7 +37,7 @@ class Database:
 
         if stderr:
             self.module.fail_json(changed=False, msg=stderr)
-        
+
         for db in stdout.strip().split('\n'):
             if db == self.db_name.upper():
                 return True
