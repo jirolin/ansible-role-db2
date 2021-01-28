@@ -1,2 +1,29 @@
 ---
 # vars file for db2
+vars:
+  resp:
+    prod: "DB2_SERVER_EDITION"
+    file: "/opt/ibm/db2/V11.5"
+    lic_agreement: "ACCEPT"
+    install_type: "COMPACT"
+
+  db2_creates: server_dec
+
+  db2_binary:
+    location: "/work/Db2/v11.5.5_linux390x64_server_dec.tar.gz"
+    dest: "/tmp"
+
+  db2_instances:
+    - instance: "DB2INST"
+      name: "db2inst1"
+      password: "{{ 'inst1inst1' | password_hash('sha512') }}"
+      group_name: "db2iadm1"
+      fenced_username: "db2fenc1"
+      fenced_group_name: "db2fadm1"
+      fenced_password: "{{ 'fenc1fenc1' | password_hash('sha512') }}"
+
+  databases:
+    - name: testdb01
+      instance: db2inst1
+      codeset: "UTF-8"
+      territory: "jp"
